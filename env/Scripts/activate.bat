@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\ASUS\OneDrive - Kathmandu College of Technology\Desktop\Save2Serve\env
+set VIRTUAL_ENV=C:\Local Drive D\Krijal\7 sem\Save2Serve\Waste-Food-Donation-\env
 
 if not defined PROMPT set PROMPT=$P$G
 
