@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Food Donation System</title>
+  <link rel="stylesheet" href="../css/dashboard.css">
+  
+
+</head>
+<body>
+  <div class="dashboard">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2>Food Donation System</h2>
+      <nav>
+        <ul>
+          <!-- Donation Section -->
+          <li class="section-title">Donation Section</li>
+          <li><a href="#donation">Food Donation</a></li>
+          <!-- Dashboard -->
+          <li class="section-title">Dashboard</li>
+          <li><a href="#profile">Profile</a></li>
+          <li><a href="#history">Donation History</a></li>
+          <!-- Settings -->
+          <li class="section-title">Settings</li>
+          <li><a href="#logout">Log Out</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="hero">
+        <h1>Join the Movement to End Food Waste</h1>
+        <button class="donate-btn">Donate Now</button>
+
+        <div id="donateModal" class="modal">
+          <div class="modal-donate-content">
+              <span id="closeModal" class="close">&times;</span>
+              <div id="modalBody">
+                  <!-- Content from donate.html will be loaded here -->
+              </div>
+          </div>
+      </div>
+    </main>
+
+    <!-- Profile Modal -->
+    <div id="profileModal" class="modal">
+      <div class="modal-profile-content">
+        <span class="close">&times;</span>
+        <div id="profileModalBody">
+          <!-- Content from profile.html will be loaded here -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    <!-- logout -->
+     <!-- Logout Modal -->
+    <div id="logoutModal" class="modal">
+        <div class="modal-content">
+        <h2>Confirm Logout</h2>
+        <p>Are you sure you want to log out?</p>
+        <div class="modal-buttons">
+            <button id="confirmLogout" class="yes-btn">Logout</button>
+            <button id="cancelLogout" class="cancel-btn">Cancel</button>
+        </div>
+        </div>
+    </div>
+  
+  </div>
+  <script src="../js/dashboard.js"></script>
+  
+
+</body>
+</html>

@@ -1,0 +1,137 @@
+/* Footer Container */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* font-family: Arial, sans-serif; */
+}
+
+footer {
+    background-color: #121212;
+    color: #fff; /* White text */
+    padding: 30px 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Top Row: Email, Twitter, Facebook */
+.footer-top-row {
+    display: flex;
+    justify-content: center; /* Center items horizontally */
+    align-items: center; /* Align items vertically */
+    gap: 150px; /* Space between columns */
+    margin-top: 30px; /* Spacing below the top row */
+}
+
+/* Contact Item Styling */
+.contact-footer {
+    text-align: center;
+    font-size: 20px; /* Font size for names and links */
+    display: flex;
+    flex-direction: column; /* Stack name/logo and link vertically */
+    gap: 10px;
+}
+
+/* Contact Logo Section */
+.contact-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Logo Styling */
+.contact-logo img {
+    width: 36px;
+    height: 36px;
+}
+
+/* Contact Text */
+.contact-logo span {
+    font-weight: bold;
+    font-size: 24px;
+    color: #fff;
+    margin-left: px;
+}
+
+
+/* Contact Links */
+.contact-footer a {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 15px;
+    margin-left: 50px;
+}
+
+.contact-footer.email a{
+    margin-left: 0px;
+}
+
+.contact-footer a:hover {
+    color: #00aced; /* Highlight on hover */
+}
+
+/* Line Separator */
+.footer-line {
+    width: 90%;
+    height: 1px;
+    background-color: #333;
+    margin: 50px; /* Center the line */
+}
+
+/* Bottom Row: Logo, Instagram, Quick Links */
+.footer-bottom-row {
+    display: flex;
+    justify-content: center; /* Space items evenly */
+    align-items: center;
+    /* margin-top: 0%; */
+    gap: 200px;
+}
+
+/* Footer Logo Section */
+.footer-logo {
+    text-align: center;
+}
+
+.footer-logo img {
+    width: 150px;
+    height: 150px;
+   margin-bottom: 10px;
+}
+
+
+/* Instagram Section */
+.contact-footer.instagram {
+    text-align: center;
+}
+
+/* Quick Links Section */
+.footer-links h4 {
+    font-size: 20px;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 15px;
+    text-align: center;
+}
+
+.footer-links li {
+    margin-bottom: 15px;
+}
+
+.footer-links a {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.footer-links a:hover {
+    color: #00aced;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin: 50px auto;
+
+}

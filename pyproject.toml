@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "save2serve"
+version = "0.1.0"
+description = "A django application for managing food donations and reducing food waste."
+authors = ["Kusum <kusumstha251@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+djoser = "^2.3.1"
+social-auth-app-django = "^5.4.2"
+drf-yasg = "^1.21.8"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
