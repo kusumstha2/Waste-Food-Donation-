@@ -1,0 +1,64 @@
+document.addEventListener("DOMContentLoaded", () => {
+    const saveLocationBtn = document.getElementById("save-location-btn");
+    const updateLocationBtn = document.getElementById("update-location-btn");
+
+    if (navigator.geolocation) {
+        saveLocationBtn?.addEventListener("click", () => {
+            navigator.geolocation.getCurrentPosition((position) => {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+
+                fetch("/save-recipient-location/", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRFToken": getCookie("csrftoken"),
+                    },
+                    body: JSON.stringify({
+                        latitude: latitude,
+                        longitude: longitude,
+                    }),
+                })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        alert(data.message || data.error);
+                    })
+                    .catch((error) => console.error("Error:", error));
+            });
+        });
+
+        updateLocationBtn?.addEventListener("click", () => {
+            navigator.geolocation.getCurrentPosition((position) => {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+
+                fetch("/update-recipient-location/", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRFToken": getCookie("csrftoken"),
+                    },
+                    body: JSON.stringify({
+                        latitude: latitude,
+                        longitude: longitude,
+                    }),
+                })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        alert(data.message || data.error);
+                    })
+                    .catch((error) => console.error("Error:", error));
+            });
+        });
+    } else {
+        alert("Geolocation is not supported by your browser.");
+    }
+});
+
+function getCookie(name) {
+    const cookieValue = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith(name + "="))
+        ?.split("=")[1];
+    return cookieValue;
+}

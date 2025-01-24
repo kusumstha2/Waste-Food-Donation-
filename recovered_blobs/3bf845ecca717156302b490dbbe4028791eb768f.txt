@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us</title>
+{%load static%}
+<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'footer.css' %}">
+<link rel="stylesheet" href="{% static 'navbar.css' %}">
+<link rel="stylesheet" href="{% static 'contactus.css' %}">
+
+
+</head>
+<body>
+
+ <!-- Navbar Section -->
+ <header>
+    <nav class="navbar">
+      <div class="logo">
+        <a href=/home>
+            <img src="{% static 'images/logo.png' %}" alt="Save2Serve Logo" class="logo-img">
+        </a>
+        
+        <!-- <a href="logo.png">Save2<span>SERVE</span></a> -->
+      </div>
+      <ul class="nav-links">
+        <li><a href=/home>Home</a></li>
+        <li><a href=/aboutus>About Us</a></li>
+        <li><a href=/contactus>Contact Us</a></li>
+        <li><a href=/serving>Where we serving</a></li>
+      </ul>
+    <div class="auth-buttons">
+        <div class="dropdown">
+            <a href="#" class="login-btn">Login</a>
+            <div class="dropdown-content">
+              <a href="login.html">Donor Login</a>
+              <a href="recipientlogin.html">Recipient Login</a>
+            </div>
+        </div>
+        <div class="dropdown">
+          <a href="#" class="signup-btn">Signup</a>
+          <div class="dropdown-content">
+            <a href="signup.html">Donor Signup</a>
+            <a href="usersignup.html">User Signup</a>
+          </div>
+        </div>
+
+        <a href="dashboard.html" class="menu-icon">&#8942;</a>
+    </div>
+    </nav>
+  </header>
+
+<!--Contact Us-->
+<section class="contact-f">
+    <div class="contact-container">
+        <h2>Contact Us</h2>
+        <p>If you have any questions, feel free to reach out to us using the form below:</p>
+
+        <!-- Contact Form Section -->
+        <form action="{% url 'foodapp:contactus' %}" method="POST" class="contact-form">
+            {% csrf_token %}
+            {% comment %} {{ form.as_p }}  {% endcomment %}
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Your Name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Your Email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" name="subject" placeholder="Subject" required>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+            </div>
+
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+</section>
+
+<!-- Contact Details Section -->
+<section class="contact">
+    <div class="contact-details">
+        <div class="contact-item">
+            <img src="{% static 'images/phone.png' %}" alt="Phone Icon">
+            <p>
+                <strong>Save2Serve</strong><br>
+                +977-9861488819
+            </p>
+        </div>
+
+        <div class="contact-item">
+            <img src="{% static 'images/location.png' %}" alt="Location Icon">
+            <p>
+                <strong>Mailing Address</strong><br>
+                Kathmandu<br>
+            </p>
+        </div>
+
+        <div class="contact-item">
+            <img src="{% static 'images/email.png' %}" alt="Email Icon">
+            <p>
+                <a href="https://mail.google.com/mail/?view=cm&to=krijalsuwal67@gmail.com" target="_blank">
+                    ContactUs@Save2Serve.com
+                </a>
+                
+
+            </p>
+        </div>
+    </div>
+</section>
+
+<!--Footer Section-->
+<footer>
+    <!-- Top Row: Email, Twitter, Facebook -->
+    <div class="footer-top-row">
+        <div class="contact-footer email">
+            <div class="contact-logo">
+                <img src="{% static 'images/mail.png' %}" alt="Email Logo">
+                <span>Send an Email</span>
+            </div>
+            <a href="https://mail.google.com/mail/?view=cm&to=krijalsuwal67@gmail.com">ContactUs@Save2Serve.com</a>
+        </div>
+  
+        <div class="contact-footer twitter">
+            <div class="contact-logo">
+                <img src="{% static 'images/twitter.png' %}" alt="Twitter Logo">
+                <span>Twitter</span>
+            </div>
+            <a href="https://twitter.com/Save2Serve" target="_blank">Twitter.com</a>
+        </div>
+  
+        <div class="contact-footer facebook">
+            <div class="contact-logo">
+                <img src="{% static 'images/facebook.png' %}" alt="Facebook Logo">
+                <span>Facebook</span>
+            </div>
+            <a href="https://facebook.com" target="_blank">facebook.com</a>
+        </div>
+    </div>
+  
+    <!-- Line Separator -->
+    <div class="footer-line"></div>
+  
+    <!-- Bottom Row: Logo, Instagram, Quick Links -->
+    <div class="footer-bottom-row">
+        <div class="footer-logo">
+            <a href=/home>
+                <img src="{% static 'images/logo white.png' %}" alt="Waste No Food Logo">
+            </a>
+        </div>
+  
+        <div class="contact-footer instagram">
+            <div class="contact-logo">
+                <img src="{% static 'images/instagram.png' %}" alt="Instagram Logo">
+                <span>Instagram</span>
+            </div>
+            <a href="https://instagram.com" target="_blank">instagram.com</a>
+        </div>
+  
+        <div class="footer-links">
+            <h4>Support</h4>
+            <ul>
+                <li><a href=/aboutus>About</a></li>
+                <li><a href=/contactus>Contact</a></li>
+                <li><a href="#faqs">FAQs</a></li>
+                <li><a href=/aboutus>Our Team</a></li>
+                <li><a href="#privacy">Privacy Policy</a></li>
+            </ul>
+        </div>
+    </div>
+  
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+        <p>&copy; 2024 Save2Serve. All rights reserved.</p>
+    </div>
+  
+  </footer>
+
+</body>
+</html>

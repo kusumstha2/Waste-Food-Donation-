@@ -1,0 +1,177 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-attachment: fixed;
+    background: url('images/WhatsApp_Image_2024-11-20_at_14.23.52_8eaf9d8c.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+
+
+/* Container Styling */
+.contact-container {
+    background: rgba(255, 255, 255, 0.2);
+    max-width: 600px;
+    height: 690px;
+    margin: 50px auto;
+    margin-top: 10%;
+    padding: 30px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+/* Heading Styling */
+.contact-container h2 {
+    text-align: center;
+    color: black;
+    margin-bottom: 10px;
+    font-size: 30px;
+}
+
+.contact-container p {
+    text-align: center;
+    margin-bottom: 20px;
+    color: black;
+}
+
+/* Form Styling */
+.contact-form {
+    display: flex;
+    color: black;
+    flex-direction: column;
+    /* align-self: center; */
+    gap: 18px;
+}
+
+.contact-form input{
+    background: transparent;
+}
+
+.contact-form textarea{
+    background: transparent;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+input{
+    border: none;
+    outline: none;   
+}
+
+input::placeholder{
+    color: black;
+    border: none;
+    outline: none;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid;
+    border-radius: 8px;
+    outline: none;
+    font-size: 16px;
+}
+
+textarea::placeholder {
+    color: black;
+}
+
+/* Submit Button Styling */
+button[type="submit"] {
+    margin-top: 25px;
+    padding: 10px 0px;
+    width: 25%;
+    align-self: center;
+    background-color: orangered;
+    color: #fff;
+    border: none;
+    border-radius: 15px;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    text-shadow: 0px 2px 3px black;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: transparent;
+    border: 2px solid orangered;
+    font-weight: bold;
+    text-shadow: none;
+    color: orangered;
+    
+    
+}
+
+/* Contact Details Section Styling */
+.contact-details {
+    background-color: transparent;
+    padding: 80px 20px;
+    margin-top: 10%;
+    border-radius: 30px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    
+}
+
+.contact-item {
+    background-color: rgb(244, 241, 241);
+    border-radius: 50px;
+    padding: 25px;
+    width: 22%;;
+    box-shadow: 0 4px 10px orangered;
+    text-align: center;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 10px orangered;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+/* Hover Effect */
+.contact-item:hover {
+    background-color: #f0f8ff; /* Light blue background on hover */
+    transform: translateY(-5px); /* Slight lift effect */
+}
+
+.contact-item img {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 10px;
+}
+
+.contact-item p {
+    font-size: 14px;
+    padding: 2px;
+    color: #555;
+}
+
+.contact-item a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.contact-item a:hover {
+    text-decoration: underline;
+}
+
+

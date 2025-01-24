@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Homepage</title>
+  {%load static%}
+  <link rel="stylesheet" href="{% static 'home.css' %}"> <!-- Link to the CSS file -->
+</head>
+<body>
+  <section class="section-text">
+    <div class="image">
+      <div class="text">
+        <h1 class="img-text"><span>Share</span> Meal<span> Spread</span> Smiles</h1>
+        <h2>Join us in making a difference!</h2>
+      </div>
+      <button class="donate-button" onclick="donateAction()">Donate Now</button>
+    </div>
+  </section>
+
+  <script src="{% static 'js/home.js' %}"></script>
+</body>
+</html>

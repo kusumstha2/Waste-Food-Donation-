@@ -3,16 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <link rel="stylesheet" href="../css/login.css">
+    <title>Recipient Login</title>
+    {%load static%}
+    <link rel="stylesheet" href="{% static 'login.css' %}">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: url("{% static 'images/cropplate.jpg' %}"); no-repeat;
+        background-size: cover;
+        background-position: center;
+        overflow: hidden;
+        
+    }
+</style>
 </head>
 <body>
     <div class="wrapper">
-        <form id="loginForm">
-            <h1>Login</h1>
+        <form id="loginForm" method = "POST">
+            <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+            <h1>Recipient Login</h1>
             <div class="input-box">
-                <input type="email" id="email" placeholder="Email" required>
+                <input type="username" id="username" placeholder="Username" required>
                 <i class='bx bxs-user-pin'></i>
             </div>
             <div class="input-box">
@@ -36,7 +51,6 @@
         </form>
     </div>
 
-    <script src="../js/login.js"></script>
+    <script src="{% static 'js/recipientlogin.js' %}"></script>
 </body>
 </html>
-
