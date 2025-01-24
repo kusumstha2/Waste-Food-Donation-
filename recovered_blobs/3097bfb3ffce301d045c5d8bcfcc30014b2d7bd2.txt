@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Donation</title>
+  {%load static%}
+  <link rel="stylesheet" href="{% static 'edit donation page.css' %}">
+</head>
+<body>
+  <div id="app-config" data-appname="foodapp"></div>
+
+  <div class="container">
+    <h1>Edit Donation</h1>
+    <form class="donate-form" id="editDonationForm">
+      <!-- Donor Details -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="donorName">Donor Name</label>
+          <input type="text" id="donorName" name="donorName" placeholder="Enter your name" required>
+        </div>
+        <div class="form-group">
+          <label for="donorNumber">Phone Number</label>
+          <input type="tel" id="donorNumber" name="donorNumber" placeholder="Enter your phone number" required>
+        </div>
+      </div>
+
+      <!-- Food Details -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="foodName">Food Name</label>
+          <input type="text" id="foodName" name="foodName" placeholder="Enter the food name" required>
+        </div>
+        <div class="form-group">
+          <label for="foodType">Food Type</label>
+          <select id="foodType" name="foodType" required>
+            <option value="" disabled selected>Select food type</option>
+            <option value="Vegetarian">Vegetarian</option>
+            <option value="Non-Vegetarian">Non-Vegetarian</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Food Image -->
+      <div class="form-group">
+        <label for="foodImage">Food Image</label>
+        <input type="file" id="foodImage" name="foodImage" accept="image/*">
+        <div id="image-preview"></div>
+      </div>
+
+      <!-- Description -->
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" name="description" rows="4" placeholder="Enter a brief description of the food" required></textarea>
+      </div>
+
+      <!-- Expiry Date and Location -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="expiryDate">Expiry Date</label>
+          <input type="date" id="expiryDate" name="expiryDate" required>
+        </div>
+        <div class="form-group">
+          <label for="location">Location</label>
+          <input type="text" id="location" name="location" placeholder="Enter the location" required>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="submit-btn">Save Changes</button>
+    </form>
+  </div>
+
+  <script src="{% static 'js/edit donation page.js' %}"></script>
+</body>
+</html>

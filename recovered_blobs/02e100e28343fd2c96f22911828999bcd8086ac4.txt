@@ -96,7 +96,7 @@ from django.utils.decorators import method_decorator
 # Create your views here.
 # class UserViewset(viewsets.ModelViewSet):
 #    queryset = User.objects.all().order_by('email')
-#    serializer_class = UserSerializerls
+#    serializer_class = UserSerializer
 
 class OTPVerificationViewset(viewsets.ModelViewSet):
    queryset = OTPVerification.objects.all().order_by('email')
@@ -180,4 +180,150 @@ User = get_user_model()
 #             messages.error(request, f"Registration failed: {e}")
 
 #     return render(request, 'signup.html')
+from django.shortcuts import render, redirect
+from rest_framework.parsers import JSONParser
+from rest_framework import generics 
+import json
+from django.urls import reverse
+from django.http import JsonResponse
+from rest_framework.response import Response,SimpleTemplateResponse
+from .serializer import *
+from rest_framework.permissions import AllowAny
+from rest_framework.authtoken.models import Token
+from rest_framework.views import APIView
+from django.contrib.auth import authenticate
+from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
+from django.contrib.auth import authenticate, login, logout
+from rest_framework.exceptions import AuthenticationFailed
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from django.views import View
+from django.http import HttpResponseForbidden
+from django.contrib.auth import logout as django_logout
    
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.permissions import AllowAny
+from rest_framework import status
+from django.contrib.auth import authenticate, login
+from rest_framework.authtoken.models import Token
+from .serializer import DonorSignupSerializer, RecipientSignupSerializer
+
+
+class DonorSignupView(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request):
+        return render(request, 'signup.html')
+
+    def post(self, request):
+        serializer = DonorSignupSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'message': 'Signup successful'}, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class DonorLoginView(APIView):
+    permission_classes = [AllowAny]
+    def get(self, request):
+        return render(request, 'login.html')
+
+    def post(self, request):
+        username = request.data.get('username')
+        password = request.data.get('password')
+        print(f'Username: {username}, Password: {password}')
+        if not username or not password:
+            return Response({'error': 'Both username and password are required'}, status=status.HTTP_400_BAD_REQUEST)
+
+        user = authenticate(username=username, password=password)
+        if user:
+            if not user.is_active:
+                return Response({'error': 'User account is inactive'}, status=status.HTTP_403_FORBIDDEN)
+
+            if not user.is_Donor:
+                return Response({'error': 'User is not registered as a Donor'}, status=status.HTTP_403_FORBIDDEN)
+
+            login(request, user)
+            token, _ = Token.objects.get_or_create(user=user)
+            return Response({'token': token.key, 'username': user.username}, status=status.HTTP_200_OK)
+
+        return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+
+
+class RecipientSignupView(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request):
+        return render(request, 'usersignup.html')
+
+    def post(self, request):
+        serializer = RecipientSignupSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'message': 'Signup successful'}, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class RecipientLoginView(APIView):
+    permission_classes = [AllowAny]
+    def get(self, request):
+        return render(request, 'recipientlogin.html')
+    def post(self, request):
+        username = request.data.get('username')
+        password = request.data.get('password')
+
+        if not username or not password:
+            return Response({'error': 'Both username and password are required'}, status=status.HTTP_400_BAD_REQUEST)
+
+        user = authenticate(username=username, password=password)
+        if user:
+            if not user.is_active:
+                return Response({'error': 'User account is inactive'}, status=status.HTTP_403_FORBIDDEN)
+
+            if not user.is_Recipient:
+                return Response({'error': 'User is not registered as a Recipient'}, status=status.HTTP_403_FORBIDDEN)
+
+            login(request, user)
+            token, _ = Token.objects.get_or_create(user=user)
+            return Response({'token': token.key, 'username': user.username}, status=status.HTTP_200_OK)
+
+        return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+
+@method_decorator(login_required, name='dispatch')
+class dashboard(View):
+    def get(self, request):
+        user = request.user
+          
+ 
+        if not request.user:
+            return HttpResponseForbidden("Access Denied: You are not a user.")
+        
+        context = {
+            'username': request.user.username,
+            'phone': request.user.phone,
+           
+        }
+        return render(request, 'dashboard.html', context)
+    
+class logout(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        try:
+            # Retrieve token from request
+            token = request.auth  # Valid if DRF's TokenAuthentication is used
+            print(f'Token received: {token}')  # Debugging log to confirm receipt of token
+
+            # Delete the token to log out
+            if token:
+                token.delete()  # This deletes the token instance from the database
+                django_logout(request)  # Ends the session
+                return Response({'message': 'Logout successful.'}, status=200)
+            else:
+                return Response({'message': 'Token not found or invalid.'}, status=400)
+
+        except Exception as e:
+            return Response({'message': 'Logout failed. Please try again.', 'error': str(e)}, status=400)

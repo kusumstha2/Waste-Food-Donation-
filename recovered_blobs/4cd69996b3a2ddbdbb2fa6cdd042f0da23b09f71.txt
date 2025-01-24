@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donate Food</title>
+  {%load static%}
+  <link rel="stylesheet" href="{% static 'donate.css' %}">
+</head>
+<body>
+  <div class="container">
+    <h1>Donate Food</h1>
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                    {{ message }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <form action="{% url 'foodapp:donate_food' %}"  method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+    <form class="donate-form">
+      <!-- Donor Details -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="donorName">Donor Name</label>
+          <input type="text" id="donorName" name="donorName" placeholder="Enter your name" required>
+        </div>
+        <div class="form-group">
+          <label for="donorNumber">Phone Number</label>
+          <input type="tel" id="donorNumber" name="donorNumber" placeholder="Enter your phone number" required>
+        </div>
+      </div>  
+
+      <!-- Food Details -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="foodName">Food Name</label>
+          <input type="text" id="foodName" name="foodName" placeholder="Enter the food name" required>
+        </div>
+        <div class="form-group">
+          <label for="foodType">Food Type</label>
+          <select id="foodType" name="foodType" required>
+            <option value="" disabled selected>Select food type</option>
+            <option value="Vegetarian">Vegetarian</option>
+            <option value="Non-Vegetarian">Non-Vegetarian</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Food Image -->
+      <div class="form-group">
+        <label for="foodImage">Food Image</label>
+        <input type="file" id="foodImage" name="foodImage" accept="image/*" required>
+        <div id="image-preview"></div>
+      </div>
+
+      <!-- Description -->
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" name="description" rows="4" placeholder="Enter a brief description of the food" required></textarea>
+      </div>
+
+      <!-- Expiry Date and Location -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="expiryDate">Expiry Date</label>
+          <input type="date" id="expiryDate" name="expiryDate" required>
+        </div>
+        <div class="form-group">
+          <label for="location">Location</label>
+          <input type="text" id="location" name="location" placeholder="Enter the location" required>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="submit-btn">Donate</button>
+    </form>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.querySelector('.donate-form');
+      const foodImageInput = document.getElementById('foodImage');
+      const expiryDateInput = document.getElementById('expiryDate');
+      const today = new Date().toISOString().split('T')[0];
+    
+      // Set minimum expiry date to today
+      expiryDateInput.setAttribute('min', today);
+    
+      // Form submit event
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+    
+        // Validate file size (max 5MB)
+        const file = foodImageInput.files[0];
+        if (file && file.size > 10 * 1024 * 1024) {
+          alert('Food image size must be less than 10MB');
+          return;
+        }
+    
+        // Ensure all fields are filled
+        const inputs = form.querySelectorAll('input, select, textarea');
+        for (const input of inputs) {
+          if (!input.value) {
+            alert(`Please fill out the ${input.previousElementSibling.textContent} field`);
+            input.focus();
+            return;
+          }
+        }
+    
+        // Collect form data
+        const donorName = document.getElementById('donorName').value;
+        const donorNumber = document.getElementById('donorNumber').value;
+        const foodName = document.getElementById('foodName').value;
+        const foodType = document.getElementById('foodType').value;
+        const foodImage = foodImageInput.files[0] ? URL.createObjectURL(foodImageInput.files[0]) : '';
+        const description = document.getElementById('description').value;
+        const expiryDate = document.getElementById('expiryDate').value;
+        const location = document.getElementById('location').value;
+    
+        // Create a donation object
+        const donation = {
+          donorName,
+          donorNumber,
+          foodName,
+          foodType,
+          foodImage,
+          description,
+          expiryDate,
+          location
+        };
+    
+        // Save the donation to localStorage
+        let donations = JSON.parse(localStorage.getItem('donations')) || [];
+        donations.push(donation);
+        localStorage.setItem('donations', JSON.stringify(donations));
+    
+        // Display success message
+        alert('Thank you for your donation!');
+        form.reset();
+        document.getElementById('image-preview').innerHTML = ''; // Clear image preview
+      });
+    
+      // Preview image after selection
+      foodImageInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        const previewContainer = document.getElementById('image-preview');
+        previewContainer.innerHTML = ''; // Clear previous preview
+    
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = () => {
+            const img = document.createElement('img');
+            img.src = reader.result;
+            previewContainer.appendChild(img);
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+    });
+    
+  </script>
+  {% comment %} <script src="{% static 'js/donate.js' %}"></script> {% endcomment %}
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donation History</title>
+  {%load static%}
+  <link rel="stylesheet" href="{% static 'donation history.css' %}">
+</head>
+<body>
+  <div class="container">
+    <h1>Deleted Donations</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Food Name</th>
+          <th>Food Type</th>
+          <th>Description</th>
+          <th>Deleted Date</th>
+        </tr>
+      </thead>
+      <tbody id="historyTable"></tbody>
+    </table>
+  </div>
+  <script src="{% static 'js/donation history.js' %}"></script>
+</body>
+</html>

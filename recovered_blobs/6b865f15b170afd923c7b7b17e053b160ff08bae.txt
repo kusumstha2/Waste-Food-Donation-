@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Homepage</title>
+  {%load static%}
+  <link rel="stylesheet" href="{% static 'navbar.css' %}"> <!-- Navbar CSS -->
+
+  
+</head>
+<body>
+  <!-- Navbar Section -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <a href="#">
+            <img src="{% static 'images/logo white.png' %}" alt="Save2Serve Logo" class="logo-img">
+        </a>
+        
+        <!-- <a href="logo.png">Save2<span>SERVE</span></a> -->
+      </div>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <button id="save-location-btn">Save Location</button>
+        <button id="update-location-btn">Update Location</button>
+
+        <!-- <li><a href="#">Profile</a></li> -->
+      </ul>
+      <div class="auth-buttons">
+        <div class="dropdown">
+          <a href="#" class="login-btn">Login</a>
+          <div class="dropdown-content">
+            <a href="login.html">Donor Login</a>
+            <a href="recipientlogin.html">Recipient Login</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <a href="#" class="signup-btn">Signup</a>
+          <div class="dropdown-content">
+            <a href="signup.html">Donor Signup</a>
+            <a href="usersignup.html">User Signup</a>
+          </div>
+        </div>
+
+        <a href="dashboard.html" class="menu-icon">&#8942;</a>
+      </div>
+
+    </nav>
+  </header>

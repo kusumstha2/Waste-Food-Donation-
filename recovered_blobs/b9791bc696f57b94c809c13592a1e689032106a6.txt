@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Where We Are Serving</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'serving.css' %}">
+</head>
+<body>
+    <!-- Cross Button -->
+    <div id="closeButton" class="close-button">&times;</div>
+
+    <div class="serving-section">
+        <h1>Where We Are Serving</h1>
+        <div id="serving-container" class="serving-container">
+            <!-- Static Cards -->
+            <div class="card">
+                <img src="{% static 'images/Pashupatinath.png' %}" alt="Pashupati Area">
+                <h3>Pashupati Area</h3>
+                <p><strong>Day:</strong> Sunday</p>
+                <p><strong>Time:</strong> 9:00 AM</p>
+                <p><strong>Quantity:</strong> 100 kg</p>
+                <p><strong>Type of Food:</strong> Veg</p>
+            </div>
+            <div class="card">
+                <img src="{% static 'images/mahakali.png' %}" alt="Byasi Mahakalisthan Bhaktapur">
+                <h3>Byasi Mahakalisthan Bhaktapur</h3>
+                <p><strong>Day:</strong> Monday</p>
+                <p><strong>Time:</strong> 1:00 PM</p>
+                <p><strong>Quantity:</strong> 70 kg</p>
+                <p><strong>Type of Food:</strong> Non-Veg</p>
+            </div>
+            <div class="card">
+                <img src="{% static 'images/Basantapur.jpg' %}" alt="Basantapur Durbar Square">
+                <h3>Basantapur Durbar Square</h3>
+                <p><strong>Day:</strong> Tuesday</p>
+                <p><strong>Time:</strong> 12:00 PM</p>
+                <p><strong>Quantity:</strong> 50 kg</p>
+                <p><strong>Type of Food:</strong> Mixed</p>
+            </div>
+            <div class="card">
+                <img src="{% static 'images/Sankhamul.jpg' %}" alt="Sankhamul Sankha Park">
+                <h3>Sankhamul Sankha Park</h3>
+                <p><strong>Day:</strong> Wednesday</p>
+                <p><strong>Time:</strong> 2:00 PM</p>
+                <p><strong>Quantity:</strong> 60 kg</p>
+                <p><strong>Type of Food:</strong> Veg</p>
+            </div>
+            <div class="card">
+                <img src="{% static 'images/tudikhel.jpg' %}" alt="Tundikhel">
+                <h3>Tundikhel</h3>
+                <p><strong>Day:</strong> Thursday</p>
+                <p><strong>Time:</strong> 3:00 PM</p>
+                <p><strong>Quantity:</strong> 60 kg</p>
+                <p><strong>Type of Food:</strong> Mixed</p>
+            </div>
+            <div class="card">
+                <img src="{% static 'images/Bouddha.jpg' %}" alt="Bouddha">
+                <h3>Bouddha</h3>
+                <p><strong>Day:</strong> Friday</p>
+                <p><strong>Time:</strong> 2:00 PM</p>
+                <p><strong>Quantity:</strong> 65 kg</p>
+                <p><strong>Type of Food:</strong> Veg</p>
+            </div>
+            <div class="card">
+                <img src="{% static 'images/patan1.webp' %}" alt="Patan Durbar Square">
+                <h3>Patan Durbar Square</h3>
+                <p><strong>Day:</strong> Saturday</p>
+                <p><strong>Time:</strong> 1:00 PM</p>
+                <p><strong>Quantity:</strong> 50 kg</p>
+                <p><strong>Type of Food:</strong> Veg</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("closeButton").addEventListener("click", function () {
+            window.location.href = "{% url 'foodapp:index' %}";
+        });
+        </script>
+        
+</body>
+</html>

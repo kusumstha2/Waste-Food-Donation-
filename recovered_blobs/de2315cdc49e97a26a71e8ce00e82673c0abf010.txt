@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Profile</title>
+  {%load static%}
+  <link rel="stylesheet" href="{% static 'profile.css' %}">
+</head>
+<body>
+  <div class="profile-container">
+    <div class="profile-card">
+      <img id="profilePic" class="profile-pic" alt="Profile Picture" title="Click to change profile">
+      <input type="file" id="changeProfilePic" accept="image/*" style="display: none;">
+      <h1 id="userName">{{ username }}</h1>
+      <div id="extraInfo">
+        <p>Email: <span id="userEmail"></span></p>
+        <p>Phone: <span id="userPhone"></span></p>
+        <p>Address: <span id="userAddress"></span></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="{% static 'js/profile.js' %}"></script>
+</body>
+</html>
